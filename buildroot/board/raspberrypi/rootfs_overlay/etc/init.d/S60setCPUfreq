@@ -1,6 +1,6 @@
 #!/bin/ash
 
-echo 700000 > /sys/devices/system/cpu/cpufreq/policy0/scaling_min_freq
-echo 700000 > /sys/devices/system/cpu/cpufreq/policy0/scaling_max_freq
+echo 600000 > /sys/devices/system/cpu/cpufreq/policy0/scaling_min_freq
+echo 600000 > /sys/devices/system/cpu/cpufreq/policy0/scaling_max_freq
 echo "userspace" > /sys/devices/system/cpu/cpufreq/policy0/scaling_governor
-echo 700000 > /sys/devices/system/cpu/cpufreq/policy0/scaling_setspeed
+echo 600000 > /sys/devices/system/cpu/cpufreq/policy0/scaling_setspeed

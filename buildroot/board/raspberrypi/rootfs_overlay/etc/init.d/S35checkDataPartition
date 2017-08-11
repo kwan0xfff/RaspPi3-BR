@@ -1,15 +1,17 @@
 #!/bin/sh
 
-mount /dev/mmcblk0p2 /mnt/data
+# Attempt to mount a formatted filesystem
+[ -d /mnt/data ] || mkdir /mnt/data	# if needed, create directory
+mount /dev/mmcblk0p3 /mnt/data
 
-if ! mount | grep -q "mmcblk0p2" ; then
- echo -e "n\np\n2\n\n\nw\n" | fdisk /dev/mmcblk0
- umount /dev/mmcblk0p1
- hdparm -z /dev/mmcblk0
- mkfs.ext4 -F /dev/mmcblk0p2
- mount /dev/mmcblk0p1
- mount /dev/mmcblk0p2
- mkdir /mnt/data/config
- mkdir /mnt/data/log
+# if mount fails, assume partition doesn't exist; format it
+if ! mount | grep -q "mmcblk0p3" ; then
+  echo -e "n\np\n3\n\n\nw\n" | fdisk /dev/mmcblk0
+  mkfs.ext4 -F /dev/mmcblk0p3
+else
+  # create necessary directories if they don't exist
+  for subdir in config log; do
+    [ -d /mnt/data/${subdir} ] || mkdir /mnt/data/${subdir}
+  done
 fi
 
