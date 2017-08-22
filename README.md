@@ -45,9 +45,3 @@ Copying the image to microSD:
 
 where `sdX` is the host device for microSD.
 
-# Open issues
-
-* Data partition not created -
-  `/etc/init.d/S35checkDataPartition` is supposed to cehck for existence
-  of data partition on /dev/mmcblk0p2 on bootup, and if it doesn't exist,
-  create it.  This is not happening.
