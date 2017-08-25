@@ -1,0 +1,15 @@
+#!/bin/sh
+
+# if mount fails, something is wrong in earlier step.
+if ! mount | grep -q "mmcblk0p3" ; then
+  echo -e "missing mmcblk0p3; cannot run tcpdump -W -C"
+  exit 1
+fi
+# If we get here, /mnt/data should be mounted on /dev/mmcblk03
+df -k | grep mmc  # show us!
+
+/sbin/ifconfig eth0 192.18.1.2 up
+sleep 2
+
+# tcpdump limit to 20 MB, 250 files => 5 GB
+/usr/sbin/tcpdump -i eth0 udp -C 20 -W 250 -w /mnt/data/daqlog &
