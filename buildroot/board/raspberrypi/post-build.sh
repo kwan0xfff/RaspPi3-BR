@@ -20,5 +20,5 @@ mkdir -p $TARGETDIR/data
 # fstab
 install -T -m 0644 $BR_ROOT/system/skeleton/etc/fstab $TARGETDIR/etc/fstab
 echo '/dev/mmcblk0p1 /boot auto defaults 0 0' >> $TARGETDIR/etc/fstab
-echo '/dev/mmcblk0p3 /data auto defaults 0 0' >> $TARGETDIR/etc/fstab
+echo '/dev/mmcblk0p3 /mnt/data auto defaults 0 0' >> $TARGETDIR/etc/fstab
 
